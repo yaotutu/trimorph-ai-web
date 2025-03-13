@@ -48,6 +48,7 @@ Thumbs.db
 .nuxt/
 
 # 3D模型文件
+*.3mf
 *.obj
 *.fbx
 *.3ds
