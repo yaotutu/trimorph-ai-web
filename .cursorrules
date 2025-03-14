@@ -1,0 +1,46 @@
+# This is the .cursorrules` file content
+
+Project Details:
+  - Framework: Vue.js 3
+  - Language: TypeScript
+  - Package Manager: pnpm
+  - Build Tool: Vite
+  - State Management: Pinia
+  - Router: Vue Router
+  - UI Libraries: Headless UI, Element Plus
+  - Styling: Tailwind CSS
+  - Additional Tools: VueUse, Vite plugins for optimization
+
+Code Style and Structure:
+  - Maintain clean, modular TypeScript code with interfaces.
+  - Use the Vue Composition API with script setup style for component logic.
+  - Follow functional programming patterns; minimize use of classes.
+  - Use PascalCase for component files and camelCase for variables and functions.
+
+Conventions:
+  - Use kebab-case for directory names.
+  - Prefer named exports for module files.
+  - Ensure strict typing by enabling TypeScript's strict mode.
+
+Installation Practices:
+  - Prompt user confirmation before installing any third-party library:
+    - **Note for team**: Always consult project leads or relevant team members before introducing new dependencies.
+  - Prioritize using Element Plus components for any new UI features.
+
+Patterns and Practices:
+  - Leverage pnpm workspace features for efficient dependency management.
+  - Use async/await for promises and wrap them in try/catch blocks for error handling.
+  - Implement code-splitting via Vite for optimized loading times.
+
+Styling and UI:
+  - Use Tailwind CSS for utility-first styling.
+  - Ensure responsive design with mobile-first CSS.
+  - Prioritize Element Plus components in a consistent manner.
+
+Performance Optimization:
+  - Optimize images using WebP format and lazy loading.
+  - Use Vite's plugin system to automate tasks like SVG processing.
+  - Employ dynamic imports wherever possible to reduce initial load times.
+
+Validation:
+  - Use ESLint and Prettier for maintaining code style and format consistently.
