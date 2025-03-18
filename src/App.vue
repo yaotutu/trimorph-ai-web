@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import PrinterStatus from '@/components/printer/PrinterStatus.vue'
 </script>
 
 <template>
-
-<h1>hello world</h1>
+  <div class="container mx-auto p-4">
+    <PrinterStatus />
+    <h1>Hello World</h1>
+  </div>
 </template>
 
 <style scoped></style>
