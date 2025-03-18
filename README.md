@@ -1,5 +1,27 @@
-# Vue 3 + TypeScript + Vite
+根据主流3D打印机控制界面（如Prusa、Ultimaker、OctoPrint等）
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+温度控制面板：
+喷头温度控制和监控
+热床温度控制和监控
+温度曲线图表显示
+预设温度快速设置（PLA、ABS等）
+文件管理系统：
+G-code文件上传
+文件列表显示
+文件预览（如果可能）
+文件操作（删除、重命名等）
+打印状态监控：
+打印进度百分比
+预计剩余时间
+已打印时间
+层高显示
+打印速度调整
+摄像头监控（如果硬件支持）：
+实时视频流
+截图功能
+延时摄影记录
+打印设置：
+打印速度微调
+流量系数调整
+风扇速度控制
+挤出器设置
