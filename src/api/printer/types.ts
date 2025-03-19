@@ -50,6 +50,34 @@ export interface TemperatureLimits {
 }
 
 // 配置文件响应接口
+export interface WebcamState {
+    enabled: boolean
+    url: string
+}
+
+export interface WebcamInfo {
+    name: string;
+    location: string;
+    service: string;
+    enabled: boolean;
+    icon: string;
+    target_fps: number;
+    target_fps_idle: number;
+    stream_url: string;
+    snapshot_url: string;
+    flip_horizontal: boolean;
+    flip_vertical: boolean;
+    rotation: number;
+    aspect_ratio: string;
+    extra_data: Record<string, any>;
+    source: string;
+    uid: string;
+}
+
+export interface WebcamsResponse {
+    webcams: WebcamInfo[];
+}
+
 export interface ConfigFileResponse {
     result: {
         eventtime: number

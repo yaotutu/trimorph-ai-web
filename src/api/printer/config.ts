@@ -5,7 +5,8 @@ export const PRINTER_API = {
         info: '/printer/info',
         gcode: '/printer/gcode/script',
         status: '/printer/objects/query',
-        temperature: '/printer/objects/query?temperatures'
+        temperature: '/printer/objects/query?temperatures',
+        webcams: '/server/webcams/list'
     },
     retryTimes: 3,
     timeout: 5000

@@ -1,5 +1,15 @@
 import { PRINTER_API, GCODE_COMMANDS } from './config'
-import type { PrinterInfo, ApiResponse, WebSocketMessage, GcodeCommand, PrinterStatus, TemperatureLimits, ConfigFileResponse } from './types'
+import type {
+    PrinterInfo,
+    ApiResponse,
+    WebSocketMessage,
+    GcodeCommand,
+    PrinterStatus,
+    TemperatureLimits,
+    ConfigFileResponse,
+    WebcamInfo,
+    WebcamsResponse
+} from './types'
 
 // API错误类
 class PrinterApiError extends Error {
@@ -35,6 +45,62 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> 
 
 // 打印机API服务
 export const printerApi = {
+    // 获取所有相机列表
+    async getWebcams(): Promise<WebcamsResponse> {
+        try {
+            const response = await fetch(`${PRINTER_API.baseURL}${PRINTER_API.endpoints.webcams}`)
+            if (!response.ok) {
+                throw new Error('获取相机列表失败')
+            }
+            const data = await response.json()
+            return data as WebcamsResponse
+        } catch (error) {
+            console.error('获取相机列表失败:', error)
+            throw error
+        }
+    },
+
+    // 获取相机流URL
+    getWebcamStreamUrl(webcam: WebcamInfo): string {
+        const baseUrl = PRINTER_API.baseURL
+        // 处理完整URL的情况
+        if (webcam.stream_url.startsWith('http')) {
+            return webcam.stream_url
+        }
+        // 处理相对URL的情况
+        const path = webcam.stream_url.startsWith('/')
+            ? webcam.stream_url.slice(1)
+            : webcam.stream_url
+        return `${baseUrl}/${path}`
+    },
+
+    // 检查相机可用性
+    async checkWebcamAvailability(url: string): Promise<boolean> {
+        try {
+            const controller = new AbortController()
+            const timeoutId = setTimeout(() => controller.abort(), 5000) // 5秒超时
+
+            const response = await fetch(url, {
+                method: 'HEAD',
+                signal: controller.signal
+            })
+
+            clearTimeout(timeoutId)
+            return response.ok
+        } catch (error) {
+            console.error('检查相机可用性失败:', error)
+            return false
+        }
+    },
+
+    // 获取相机快照URL
+    getWebcamSnapshotUrl(webcam: WebcamInfo): string {
+        const baseUrl = PRINTER_API.baseURL
+        return webcam.snapshot_url.startsWith('http')
+            ? webcam.snapshot_url
+            : `${baseUrl}${webcam.snapshot_url}`
+    },
+
     // 获取打印机信息
     async getPrinterInfo(): Promise<ApiResponse<PrinterInfo>> {
         return await fetchApi(PRINTER_API.endpoints.info)
