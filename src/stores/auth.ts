@@ -1,71 +1,51 @@
 import { defineStore } from 'pinia'
-import type { Router } from 'vue-router'
+import { ref } from 'vue'
+import { authApi } from '@/api/auth'
+import { request } from '@/utils/request'
+import type { LoginRequest } from '@/types/api'
 
-interface User {
-    id: string
-    username: string
-    token: string
-}
+export const useAuthStore = defineStore('auth', () => {
+    // 从 localStorage 初始化状态
+    const token = ref(localStorage.getItem('token') || '')
+    const isAuthenticated = ref(!!localStorage.getItem('token'))
 
-interface AuthState {
-    user: User | null
-    token: string | null
-}
+    // 初始化 request 实例的 token
+    if (token.value) {
+        request.setToken(token.value)
+    }
 
-export const useAuthStore = defineStore('auth', {
-    state: (): AuthState => ({
-        user: null,
-        token: localStorage.getItem('token')
-    }),
-
-    getters: {
-        isAuthenticated: (state) => !!state.token,
-        getUser: (state) => state.user
-    },
-
-    actions: {
-        async login(username: string, password: string) {
-            try {
-                // TODO: 实际项目中需要调用后端API进行验证
-                // const response = await api.post('/auth/login', { username, password })
-                // const { user, token } = response.data
-
-                // 模拟登录成功
-                const token = 'demo-token'
-                const user = {
-                    id: '1',
-                    username,
-                    token
-                }
-
-                // 保存登录状态
-                this.setUser(user)
-                this.setToken(token)
-
+    // 登录
+    const login = async (loginData: LoginRequest) => {
+        try {
+            const response = await authApi.login(loginData)
+            if (response.code === 1) {
+                token.value = response.data.token
+                isAuthenticated.value = true
+                // 保存到 localStorage
+                localStorage.setItem('token', response.data.token)
+                request.setToken(response.data.token)
                 return true
-            } catch (error) {
-                console.error('登录失败:', error)
-                return false
             }
-        },
-
-        logout(router: Router) {
-            // 清除用户状态
-            this.user = null
-            this.token = null
-            localStorage.removeItem('token')
-
-            // 跳转到登录页
-            router.push('/login')
-        },
-
-        setUser(user: User) {
-            this.user = user
-        },
-
-        setToken(token: string) {
-            this.token = token
-            localStorage.setItem('token', token)
+            return false
+        } catch (error) {
+            console.error('登录失败:', error)
+            return false
         }
+    }
+
+    // 登出
+    const logout = () => {
+        token.value = ''
+        isAuthenticated.value = false
+        request.clearToken()
+        // 清除 localStorage
+        localStorage.removeItem('token')
+    }
+
+    return {
+        token,
+        isAuthenticated,
+        login,
+        logout
     }
 })
