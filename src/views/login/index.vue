@@ -40,46 +40,29 @@ const handleLogin = async () => {
 </script>
 
 <template>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="login-header">
-                <h2 class="login-title">登录系统</h2>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+        <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-sm">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900">登录系统</h2>
             </div>
-            <form class="login-form" @submit.prevent="handleLogin">
-                <div class="form-group">
-                    <div class="input-group">
+            <form class="mt-8" @submit.prevent="handleLogin">
+                <div class="mb-6">
+                    <div class="mb-4">
                         <label for="username" class="sr-only">用户名</label>
-                        <input
-                            id="username"
-                            v-model="loginForm.username"
-                            name="username"
-                            type="text"
-                            required
-                            class="form-input"
-                            placeholder="用户名"
-                        >
+                        <input id="username" v-model="loginForm.username" name="username" type="text" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/10"
+                            placeholder="用户名">
                     </div>
-                    <div class="input-group">
+                    <div class="mb-4">
                         <label for="password" class="sr-only">密码</label>
-                        <input
-                            id="password"
-                            v-model="loginForm.password"
-                            name="password"
-                            type="password"
-                            required
-                            class="form-input"
-                            placeholder="密码"
-                        >
+                        <input id="password" v-model="loginForm.password" name="password" type="password" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/10"
+                            placeholder="密码">
                     </div>
                 </div>
 
-                <div class="form-footer">
-                    <el-button
-                        :loading="loading"
-                        type="primary"
-                        class="submit-btn"
-                        @click="handleLogin"
-                    >
+                <div>
+                    <el-button :loading="loading" type="primary" class="w-full" @click="handleLogin">
                         登录
                     </el-button>
                 </div>
@@ -158,4 +141,4 @@ const handleLogin = async () => {
 .submit-btn {
     width: 100%;
 }
-</style> 
+</style>

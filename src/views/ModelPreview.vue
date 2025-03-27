@@ -165,6 +165,7 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
     // 清理资源
+    // @ts-ignore
     scene?.dispose()
     renderer?.dispose()
     controls?.dispose()

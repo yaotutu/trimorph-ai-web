@@ -40,83 +40,50 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="dashboard-container">
-        <nav class="nav-bar">
-            <div class="nav-content">
-                <div class="nav-wrapper">
-                    <div class="nav-left">
-                        <h1 class="nav-title">仪表盘</h1>
+    <div class="min-h-screen bg-gray-100">
+        <nav class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-bold text-gray-900">仪表盘</h1>
                     </div>
-                    <div class="nav-right">
-                        <el-button
-                            type="danger"
-                            @click="handleLogout"
-                        >
-                            退出登录
-                        </el-button>
-                    </div>
+                    <el-button type="danger" class="my-auto" @click="handleLogout">
+                        退出登录
+                    </el-button>
                 </div>
             </div>
         </nav>
 
-        <main class="main-content">
-            <div class="content-wrapper">
-                <div class="content-box">
-                    <div class="content-header">
-                        <h2 class="content-title">文件列表</h2>
-                        <el-button
-                            type="primary"
-                            :loading="loading"
-                            @click="fetchFileList"
-                        >
+        <main class="py-10">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-medium text-gray-900">文件列表</h2>
+                        <el-button type="primary" :loading="loading" @click="fetchFileList">
                             刷新列表
                         </el-button>
                     </div>
-                    
-                    <el-table
-                        v-loading="loading"
-                        :data="fileList"
-                        style="width: 100%"
-                    >
-                        <el-table-column
-                            prop="filename"
-                            label="文件名"
-                            min-width="200"
-                        />
-                        <el-table-column
-                            prop="size"
-                            label="大小"
-                            width="120"
-                        >
+
+                    <el-table v-loading="loading" :data="fileList" class="w-full">
+                        <el-table-column prop="filename" label="文件名" min-width="200" class="text-sm text-gray-900" />
+                        <el-table-column prop="size" label="大小" width="120" class="text-sm text-gray-600">
                             <template #default="{ row }">
                                 {{ (row.size / 1024).toFixed(2) }} KB
                             </template>
                         </el-table-column>
-                        <el-table-column
-                            prop="modified"
-                            label="修改时间"
-                            width="180"
-                        />
-                        <el-table-column
-                            label="操作"
-                            width="150"
-                            fixed="right"
-                        >
+                        <el-table-column prop="modified" label="修改时间" width="180" class="text-sm text-gray-600" />
+                        <el-table-column label="操作" width="150" fixed="right" class="text-sm">
                             <template #default="{ row }">
-                                <el-button
-                                    type="primary"
-                                    link
-                                    @click="() => console.log('预览文件:', row.filename)"
-                                >
-                                    预览
-                                </el-button>
-                                <el-button
-                                    type="danger"
-                                    link
-                                    @click="() => console.log('删除文件:', row.filename)"
-                                >
-                                    删除
-                                </el-button>
+                                <div class="space-x-2">
+                                    <el-button type="primary" link class="text-blue-600 hover:text-blue-800"
+                                        @click="() => console.log('预览文件:', row.filename)">
+                                        预览
+                                    </el-button>
+                                    <el-button type="danger" link class="text-red-600 hover:text-red-800"
+                                        @click="() => console.log('删除文件:', row.filename)">
+                                        删除
+                                    </el-button>
+                                </div>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -125,69 +92,3 @@ onMounted(() => {
         </main>
     </div>
 </template>
-
-<style scoped>
-.dashboard-container {
-    min-height: 100vh;
-    background-color: #f3f4f6;
-}
-
-.nav-bar {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.nav-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    height: 4rem;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-}
-
-.nav-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #111827;
-}
-
-.main-content {
-    padding: 2.5rem 0;
-}
-
-.content-wrapper {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.content-box {
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.content-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.content-title {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #111827;
-    margin: 0;
-}
-</style> 
