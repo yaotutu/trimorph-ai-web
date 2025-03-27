@@ -12,7 +12,7 @@ const routes = [
     {
         path: '/printer-control',
         name: 'PrinterControl',
-        component: () => import('@/views/PrinterControl.vue'),
+        component: () => import('@/views/printer-control/index.vue'),
         meta: {
             requiresAuth: false // 不需要登录的页面
         }
