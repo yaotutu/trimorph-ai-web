@@ -20,7 +20,7 @@ const routes = [
     {
         path: '/model-preview',
         name: 'ModelPreview',
-        component: () => import('@/views/ModelPreview.vue'),
+        component: () => import('@/views/model-preview/index.vue'),
         meta: {
             requiresAuth: false // 不需要登录的页面
         }
