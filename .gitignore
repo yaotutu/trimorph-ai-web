@@ -1,5 +1,6 @@
 # 忽略所有以.开头的文件和目录
-.*
+.clinerules
+.cursorrules
 # 但是保留.gitignore文件
 !.gitignore
 
