@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
-import Layout from '@/layout/Layout.vue';
+import Layout from '@/views/layout/Layout.vue';
 
 // 路由配置
 const routes = [

@@ -65,4 +65,7 @@ const toggleCollapse = () => {
   height: 100vh;
   overflow: hidden;
 }
+.el-main {
+  --el-main-padding: 0px;
+}
 </style>
