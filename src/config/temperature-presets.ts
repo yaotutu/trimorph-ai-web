@@ -1,4 +1,4 @@
-import type { Temperature } from '@/api/printer/types'
+
 
 export interface TemperaturePreset {
     hotend: number

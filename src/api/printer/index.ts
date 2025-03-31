@@ -3,9 +3,7 @@ import type {
     PrinterInfo,
     ApiResponse,
     WebSocketMessage,
-    GcodeCommand,
     PrinterStatus,
-    TemperatureLimits,
     ConfigFileResponse,
     WebcamInfo,
     WebcamsResponse

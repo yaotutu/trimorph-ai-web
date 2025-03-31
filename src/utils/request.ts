@@ -1,6 +1,6 @@
 import { API_CONFIG } from '@/config/api'
 import type { ApiResponse } from '@/types/api'
-import { ElMessage } from 'element-plus'
+
 
 class RequestError extends Error {
     constructor(message: string) {
