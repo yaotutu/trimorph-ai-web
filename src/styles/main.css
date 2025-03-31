@@ -1,26 +1,3 @@
 /* 导入基础样式 */
-@import './base.css';
 @import "tailwindcss";
 
-/* 全局组件样式 */
-.components {
-    /* 这里添加全局组件样式 */
-}
-
-/* 全局工具类 */
-.utilities {
-    /* 这里添加全局工具类 */
-}
-
-/* 响应式样式 */
-@media (max-width: 768px) {
-    /* 这里添加移动端样式 */
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* 这里添加平板端样式 */
-}
-
-@media (min-width: 1025px) {
-    /* 这里添加桌面端样式 */
-}
